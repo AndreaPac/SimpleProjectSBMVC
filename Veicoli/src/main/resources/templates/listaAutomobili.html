@@ -1,0 +1,65 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+	integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+	integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+	<h1>Elenco Automobili Disponibili</h1>
+
+
+	<div class="text-right">
+		<form action="#" th:action="@{/nuova}">
+			<button class="btn btn-info" onclick='this.form.submit();' value="Nuova">Nuova Automobile...</button>
+		</form>
+	</div>
+	
+	<table class="table table-striped">
+		<tr>
+			<th>ID</th>
+			<th>Modello</th>
+			<th>Marca</th>
+			<th>Cavalli (HP)</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr th:each="auto : ${automobili}">
+			<td th:text="${auto.id}" />
+			<td th:text="${auto.modello}" />
+			<td th:text="${auto.marca}" />
+			<td th:text="${auto.cavalli}" />
+			<td>
+				<form action="#" th:action="@{/modifica}">
+					<input type="hidden" name="idAuto" th:value="${auto.id}" />
+					<button class="btn btn-primary" onclick='this.form.submit();' value="M">M</button>
+				</form>
+			</td>
+			<td>
+				<form action="#" th:action="@{/elimina}">
+					<input type="hidden" name="idAuto" th:value="${auto.id}" />
+					<button class="btn btn-danger" onclick='this.form.submit();' value="X">X</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+
+
+</body>
+</html>
